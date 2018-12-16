@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Middleware\CheckAdmin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -21,5 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 /* social login auth*/
 Route::get('login/{pro}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{pro}/callback', 'Auth\LoginController@handleProviderCallback');
-Route::view('/admin','dashboard');
+/*Route::view('/admin','dashboard');
 Route::view('/about','about');
+*/
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('verified','checkadmin');
