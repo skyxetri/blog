@@ -23,7 +23,11 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 /* social login auth*/
 Route::get('login/{pro}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{pro}/callback', 'Auth\LoginController@handleProviderCallback');
-/*Route::view('/admin','dashboard');
-Route::view('/about','about');
+Route::view('/create','post.create');
+Route::view('/edit','post.edit');
+Route::view('/index','post.index');
+Route::view('/show','post.show');
+
+/*Route::view('/about','about');
 */
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware('verified','checkadmin');
