@@ -150,7 +150,7 @@
                                         <span class="pull-right text-muted">60% Complete</span>
                                     </p>
                                     <div class="progress progress-striped active">
-                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+                                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-value'\]w="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
                                             <span class="sr-only">60% Complete (warning)</span>
                                         </div>
                                     </div>
@@ -181,7 +181,7 @@
                             </a>
                         </li>
                     </ul>
-                    <!-- /.dropdown-tasks -->
+                    <!-- /.dropdown-tasks -->l-op[]
                 </li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
