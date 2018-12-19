@@ -23,11 +23,24 @@ Route::get('/home', 'HomeController@index')->name('home')->middleware('verified'
 /* social login auth*/
 Route::get('login/{pro}', 'Auth\LoginController@redirectToProvider');
 Route::get('login/{pro}/callback', 'Auth\LoginController@handleProviderCallback');
-Route::view('/create','post.create');
-Route::view('/edit','post.edit');
-Route::view('/index','post.index');
-Route::view('/show','post.show');
+Route::get('/admin', 'AdminController@index')->name('admin')->middleware('verified','checkadmin');
 
 /*Route::view('/about','about');
 */
-Route::get('/admin', 'AdminController@index')->name('admin')->middleware('verified','checkadmin');
+Route::middleware(['verified'])->prefix('admin/post')->group(function()
+{
+
+Route::post('/','PostController@store')->name('post.store');
+Route::get('/create','PostController@create')->name('post.create');
+Route::get('/index','PostController@index')->name('post.index');
+Route::get('/edit/{id}','PostController@edit')->name('post.edit');
+Route::get('/show/{id}','PostController@show')->name('post.show');
+Route::post('/update/{id}','PostController@update')->name('post.update');
+Route::delete('/delete/{id}','PostController@destroy')->name('post.delete');
+
+});
+
+
+
+
+
