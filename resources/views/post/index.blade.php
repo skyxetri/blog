@@ -13,20 +13,27 @@
     </tr>
   </thead>
   <tbody>
+    @foreach($data as $key=>$da)
     <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
+      <th scope="row">{{ ++$key }}</th>
+      <td> {{ $da->title }} </td>
+      <td> {{ $da->body }} </td>
+      <td> <img src="{{ asset('/image/'.$da->featured_img) }}"></td>
       <td>
-        <input type="button" class="btn btn-primary" name="" value="view">
-        <input type="button" class="btn btn-primary" name="" value="edit">
-        <input type="button" class="btn btn-danger" name="" value="delete">
+       <a href="{{ route('post.show',$da->id) }}"> <input type="button" class="btn btn-primary" name="" value="view">
+       </a>
+      <a href="{{ route('post.edit',$da->id) }}"><input type="button" class="btn btn-primary" name="" value="edit"></a>
+      
+       <form action="{{ route('post.delete', $da->id)}}" method="POST">
+        <input type="hidden" name="_method" value="DELETE">
+        @csrf
+         <input type="submit" class="btn btn-danger" name="" value="delete">
+       </form> 
 
 
       </td>
     </tr>
-     
+     @endforeach
   </tbody>
 </table>
 @endsection
