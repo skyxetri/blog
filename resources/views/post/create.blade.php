@@ -17,7 +17,9 @@
     <label for="title">Title</label>
     <input type="text" class="form-control" id="title" name="title" placeholder="Enter Title ">
   </div>
-  
+  <div class="form-group">
+  {!! Form::select('category',$cat,null,['placeholder' => 'select category','class' => 'form-control']) !!}
+  </div>
   <div class="form-group">
     <label for="body">Body</label>
     <textarea name="body" rows="10" cols="100"></textarea>

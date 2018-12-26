@@ -1,6 +1,8 @@
 @extends('layouts.main')
 @section('content')
-
+<div class="row" style="padding: 10px;">
+<a href="{{ route('post.create')}}"><input type="button" class="btn btn-success" name="" value="create post"></a><br>
+</div>
 <table class="table table-dark">
   <thead>
     <tr>

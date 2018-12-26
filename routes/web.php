@@ -27,16 +27,27 @@ Route::get('/admin', 'AdminController@index')->name('admin')->middleware('verifi
 
 /*Route::view('/about','about');
 */
-Route::middleware(['verified'])->prefix('admin/post')->group(function()
+Route::middleware(['verified'])->prefix('admin')->group(function()
 {
 
-Route::post('/','PostController@store')->name('post.store');
-Route::get('/create','PostController@create')->name('post.create');
-Route::get('/index','PostController@index')->name('post.index');
-Route::get('/edit/{id}','PostController@edit')->name('post.edit');
-Route::get('/show/{id}','PostController@show')->name('post.show');
-Route::post('/update/{id}','PostController@update')->name('post.update');
-Route::delete('/delete/{id}','PostController@destroy')->name('post.delete');
+Route::post('post','PostController@store')->name('post.store');
+Route::get('post/create','PostController@create')->name('post.create');
+Route::get('post/index','PostController@index')->name('post.index');
+Route::get('post/edit/{id}','PostController@edit')->name('post.edit');
+Route::get('post/show/{id}','PostController@show')->name('post.show');
+Route::post('post/update/{id}','PostController@update')->name('post.update');
+Route::delete('post/delete/{id}','PostController@destroy')->name('post.delete');
+
+//category
+
+
+Route::post('category','CategoryController@store')->name('category.store');
+Route::get('category/create','CategoryController@create')->name('category.create');
+Route::get('category/index','CategoryController@index')->name('category.index');
+Route::get('category/edit/{id}','CategoryController@edit')->name('category.edit');
+Route::get('category/show/{id}','CategoryController@show')->name('category.show');
+Route::post('category/update/{id}','CategoryController@update')->name('category.update');
+Route::delete('category/delete/{id}','CategoryController@destroy')->name('category.delete');
 
 });
 

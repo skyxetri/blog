@@ -17,6 +17,9 @@
     <label for="title">Title</label>
     <input type="text" class="form-control" name="title" id="title" value="{{ $data->title }} ">
   </div>
+   <div class="form-group">
+  {!! Form::select('category',$cat,$cats,['value' => 'select category','class' => 'form-control']) !!}
+  </div>
 
    <div class="form-group">
     <label for="body">Body</label>

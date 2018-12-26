@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Category;
 use Illuminate\Http\Request;
 use App\Post;
 use Auth;
@@ -33,7 +33,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view('post.create');
+        $cat= Category::pluck('title','id')->toArray();
+        return view('post.create',compact('cat'));
     }
 
     /**
@@ -44,6 +45,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+         
         $request->validate([
             'title' => 'required|max:50',
             'body' =>'required',
@@ -53,6 +55,7 @@ class PostController extends Controller
         $data = new Post();
         $data->title=$request->get('title');
         $data->body=$request->get('body');
+        $data->cat_id=$request->get('category');
         $data->user_id=Auth::id();
 
         if($request->hasFile('featured_img')){
@@ -87,7 +90,11 @@ class PostController extends Controller
     public function edit($id)
     {
         $data = Post::findorfail($id);
-        return view('post.edit')->with('data',$data);
+        $cat= Category::pluck('title','id')->toArray();
+
+        $cats= key(Category::where('id',$data->cat_id)->pluck('title','id')->toArray());
+        
+        return view('post.edit',compact('data','cat','cats'));
     }
 
     /**
@@ -104,10 +111,10 @@ class PostController extends Controller
             'body' =>'required',
             'featured_img' =>'mimes:jpeg,bmp,jpg,png',
         ]);
-
         $data = Post::findorfail($id);
         $data->title=$request->get('title');
         $data->body=$request->get('body');
+        $data->cat_id=$request->get('category');
         $data->user_id=Auth::id();
 
         if($request->hasFile('featured_img')){
